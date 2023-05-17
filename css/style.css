@@ -245,6 +245,18 @@ h6 {
   }
 }
 
+[data-fullscreen] {
+  min-height: 100vh;
+}
+.touch [data-fullscreen] {
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+@media (max-width: 47.99875em) {
+  .touch [data-fullscreen] {
+    transition: height 0.2s;
+  }
+}
+
 [class*=-ibg] {
   position: relative;
 }
@@ -502,12 +514,12 @@ h6 {
 }
 @media (min-width: 20em) and (max-width: 76.875em) {
   .link-game-service__list-link {
-    column-gap: clamp( 1.3125rem , 1.3125rem  +  0vw , 1.3125rem );
+    column-gap: clamp( 0.9375rem , 0.8056318681rem  +  0.6593406593vw , 1.3125rem );
   }
 }
 @media (max-width: 20em) {
   .link-game-service__list-link {
-    column-gap: 1.3125rem;
+    column-gap: 0.9375rem;
   }
 }
 .link-game-service__item-link {
@@ -597,7 +609,6 @@ h6 {
   position: relative;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
   background: url("../img/bg-img/01.jpg") 0 0/cover no-repeat;
 }
 .hero::before {
