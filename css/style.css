@@ -386,7 +386,7 @@ h6 {
 }
 .header._header-show {
   top: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.97);
   transition: top 0.3s ease;
 }
 
@@ -592,8 +592,20 @@ h6 {
   }
 }
 
-.page__hero {
-  padding-top: 21.25rem;
+@media (min-width: 90em) {
+  .page__hero {
+    padding-top: 21.25rem;
+  }
+}
+@media (min-width: 20em) and (max-width: 90em) {
+  .page__hero {
+    padding-top: clamp( 10.625rem , 7.5892857143rem  +  15.1785714286vw , 21.25rem );
+  }
+}
+@media (max-width: 20em) {
+  .page__hero {
+    padding-top: 10.625rem;
+  }
 }
 @media (min-width: 76.875em) {
   .page__hero {
@@ -847,6 +859,7 @@ h6 {
 }
 .game-description .slider__slide._watcher-view {
   left: 15.5378486056%;
+  transform: scale(0.85);
   opacity: 1;
   visibility: visible;
 }
