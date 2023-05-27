@@ -1,139 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-	<title>game</title>
-	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230526200940">
-	<link rel="shortcut icon" href="favicon.ico">
-	<!-- <meta name="robots" content="noindex, nofollow"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-	<div class="wrapper">
-		<header data-scroll data-scroll-show class="header">
-			<div class="header__container">
-				<div class="header__row row-menu">
-					<div class=" row-menu__logo">
-						<img src="img/icons/logo.svg" alt="image logotpe">
+	@@include('html/_head.htm',{
+	"title":"game"
+	})
+	<body>
+		<div class="wrapper">
+			@@include('html/_header.htm',{})
+			<main class="page">
+				<section data-watch="navigator" data-fullscreen class="page__hero hero" id="main">
+					<div class="hero__container">
+						<div class="hero__content">
+							<h1 class="hero__title title">SURVIVE AT ALL COSTS</h1>
+							<h3 class="hero__subtitle subtitle">Experience new social battle royale game</h3>
+							<button type="submit" class="hero__btn-bay-now yellow-button"><span>Buy Now on Steam</span> <span></span> <span>$14.99</span></button>
+						</div>
+						<button data-goto="#about" type="button" class="hero__btn-scroll"><span>The story</span></button>
 					</div>
-
-					<div class="row-menu__menu menu">
-						<nav class="menu__body">
-							<ul class="menu__list">
-								<li class="menu__item"><a data-goto="#main" href="/" class="menu__link" target="_blank">MAIN</a></li>
-								<li class="menu__item"><a data-goto="#about" href="#" class="menu__link" target="_blank">about</a></li>
-								<li class="menu__item"><a href="/" class="menu__link" target="_blank">game features</a></li>
-								<li class="menu__item"><a href="/" class="menu__link" target="_blank">System requirements</a></li>
-								<li class="menu__item"><a href="/" class="menu__link" target="_blank">quotes</a></li>
-							</ul>
-						</nav>
-					</div>
-
-					<div class="row-menu__link link-game-service">
-						<select name="form[]" class="link-game-service__select-lang">
-							<option value="1" selected>eng</option>
-							<option value="2">rus</option>
-							<option value="3">fra</option>
-							<option value="4">deu</option>
-						</select>
-						<div class="link-game-service__decor-line"></div>
-						<ul class="link-game-service__list-link">
-							<li class="link-game-service__item-link">
-								<a href="/" class="link-game-service__link-service" target="_blank">
-									<img src="img/icons/xbox.svg" alt="xbox icon">
-								</a>
-							</li>
-
-							<li class="link-game-service__item-link">
-								<a href="/" class="link-game-service__link-service" target="_blank">
-									<img src="img/icons/steam.svg" alt="steam icon">
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					<button type="button" class="menu__icon icon-menu"><span></span></button>
-				</div>
-			</div>
-		</header>
-		<main class="page">
-			<section data-watch="navigator" data-fullscreen class="page__hero hero" id="main">
-				<div class="hero__container">
-					<div class="hero__content">
-						<h1 class="hero__title title">SURVIVE AT ALL COSTS</h1>
-						<h3 class="hero__subtitle subtitle">Experience new social battle royale game</h3>
-						<button type="submit" class="hero__btn-bay-now yellow-button"><span>Buy Now on Steam</span> <span></span> <span>$14.99</span></button>
-					</div>
-					<button data-goto="#about" type="button" class="hero__btn-scroll"><span>The story</span></button>
-				</div>
-			</section>
-			<section id="about" data-watch="navigator" class="page__description-game game-description">
-				<div class="game-description__container">
-					<div class="game-description__row">
-						<div class="game-description__block-info">
-							<div class="game-description__title-block">
-								<h3 class="game-description__subtitle subtitle">What is SOS?</h3>
-								<h1 class="game-description__title title">social battle royalty game</h1>
+				</section>
+				<section id="about" data-watch="navigator"  class="page__description-game game-description">
+					<div class="game-description__container">
+						<div class="game-description__row">
+							<div class="game-description__block-info">
+								<div class="game-description__title-block">
+									<h3 class="game-description__subtitle subtitle">What is SOS?</h3>
+									<h1 class="game-description__title title">social battle royalty game</h1>
+								</div>
+								<div class="game-description__decor-line"></div>
+								<div class="game-description__block-txt">
+									<p>Each round, you and 15 other contestants compete to
+										escape a deadly island filled with monsters. The trick is: three people can survive. Will you run
+										solo or form friendships with others to escape? 
+									</p>
+									<br>
+									<p>Making the right decisions could be the
+										difference between life and death.
+									</p>
+								</div>
 							</div>
-							<div class="game-description__decor-line"></div>
-							<div class="game-description__block-txt">
-								<p>Each round, you and 15 other contestants compete to
-									escape a deadly island filled with monsters. The trick is: three people can survive. Will you run
-									solo or form friendships with others to escape?
-								</p>
-								<br>
-								<p>Making the right decisions could be the
-									difference between life and death.
-								</p>
+		
+							<div class="game-description__slider slider">
+								<div data-gallery  class="slider__swiper">
+									<a data-watch-once  data-watch href="@img/slider/01.jpg" class="slider__slide">
+										<img src="@img/slider/01.jpg" alt="slider image">
+									</a>
+									<a data-watch-once data-watch href="@img/slider/02.jpg" class="slider__slide">
+										<img src="@img/slider/02.jpg" alt="slider image">
+									</a>
+									<a data-watch-once data-watch href="@img/slider/02.jpg" class="slider__slide">
+										<img src="@img/slider/03.jpg" alt="slider image">
+									</a>
+								</div>
+								<div class="slider__pagination swiper-pagination"></div>
+								<button type="button" class="slider__btn-next">
+									<svg width="23" height="11" viewBox="0 0 23 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M21.8047 1.78784H1.80469L11.6927 9.78784L21.8047 1.78784Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
 							</div>
 						</div>
-
-						<div class="game-description__slider slider">
-							<div data-gallery class="slider__swiper">
-								<a data-watch-once data-watch href="img/slider/01.jpg" class="slider__slide">
-									<picture><source srcset="img/slider/01.webp" type="image/webp"><img src="img/slider/01.jpg" alt="slider image"></picture>
-								</a>
-								<a data-watch-once data-watch href="img/slider/02.jpg" class="slider__slide">
-									<picture><source srcset="img/slider/02.webp" type="image/webp"><img src="img/slider/02.jpg" alt="slider image"></picture>
-								</a>
-								<a data-watch-once data-watch href="img/slider/02.jpg" class="slider__slide">
-									<picture><source srcset="img/slider/03.webp" type="image/webp"><img src="img/slider/03.jpg" alt="slider image"></picture>
-								</a>
+					</div>
+				</section>
+				<section id="game-features" data-watch="navigator" class="page__game-features features-game">
+					<div class="features-game__container">
+						<div class="features-game__block-info">
+							<h3 class="features-game__subtitle subtitle">What’s so special?</h3>
+							<h1 class="features-game__title title">features</h1>
+							<div data-spollers data-one-spoller class="features-game__spollers spollers">
+								<div class="spollers__item show-line">
+									<button type="button" data-spoller class="spollers__title _spoller-active">SURVIVE AT ALL COSTS</button>
+									<p class="spollers__body">You have 30 minutes to find a relic, signal for extraction, and grab one of three spots on the rescue chopper.</p>
+								</div>
+								<div class="spollers__item">
+									<button type="button" data-spoller class="spollers__title">CREATE ALLIES & ENEMIES</button>
+									<p class="spollers__body">You have 30 minutes to find a relic, signal for extraction, and grab one of three spots on the rescue chopper.</p>
+								</div>
+								<div class="spollers__item">
+									<button type="button" data-spoller class="spollers__title">IMPRESS THE AUDIENCE</button>
+									<p class="spollers__body">You have 30 minutes to find a relic, signal for extraction, and grab one of three spots on the rescue chopper.</p>
+								</div>
 							</div>
-							<div class="slider__pagination swiper-pagination"></div>
-							<button type="button" class="slider__btn-next">
-								<svg width="23" height="11" viewBox="0 0 23 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M21.8047 1.78784H1.80469L11.6927 9.78784L21.8047 1.78784Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								</svg>
-							</button>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section class="page__game-features features-game"></section>
-		</main>
-		<footer class="footer">
-			<div class="footer__container">
-			</div>
-		</footer>
-	</div>
-	<!-- 
-<div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-			</div>
+				</section>
+			</main>
+			@@include('html/_footer.htm',{})
 		</div>
-	</div>
-</div>
- -->
-
-	<script src="js/app.min.js?_v=20230526200940"></script>
-</body>
-
+		@@include('html/_popup.htm',{})
+		@@include('html/_js.htm',{})
+	</body>
 </html>
