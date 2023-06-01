@@ -1789,7 +1789,7 @@
                   (e[g] = s);
               }
             },
-            Y = function (e, t) {
+            j = function (e, t) {
               if (X(e)) {
                 var s = N(e);
                 t.forEach(function (t) {
@@ -1799,7 +1799,7 @@
                 });
               }
             },
-            j = function (e, t, s) {
+            Y = function (e, t, s) {
               O(e, t.class_applied),
                 x(e, v),
                 s &&
@@ -1911,7 +1911,7 @@
                         O(t, s.class_error),
                         x(t, b),
                         M(s.callback_error, t, i),
-                        s.restore_on_error && Y(t, R),
+                        s.restore_on_error && j(t, R),
                         n || ee(s, i);
                     })(0, e, t, s),
                       ne(i);
@@ -1944,7 +1944,7 @@
                         var i = C(e, t.data_bg_multi),
                           n = C(e, t.data_bg_multi_hidpi),
                           r = o && n ? n : i;
-                        r && ((e.style.backgroundImage = r), j(e, t, s));
+                        r && ((e.style.backgroundImage = r), Y(e, t, s));
                       })(e, t, s),
                       (function (e, t, s) {
                         var i = C(e, t.data_bg_set);
@@ -1959,7 +1959,7 @@
                                 return "-webkit-image-set(".concat(e, ")");
                               })),
                               (e.style.backgroundImage = o.join())),
-                            j(e, t, s);
+                            Y(e, t, s);
                         }
                       })(e, t, s);
                   })(e, t, s)
@@ -1976,24 +1976,24 @@
             },
             ce = function (e) {
               G(e, function (e) {
-                Y(e, R);
+                j(e, R);
               }),
-                Y(e, R);
+                j(e, R);
             },
             de = {
               IMG: ce,
               IFRAME: function (e) {
-                Y(e, F);
+                j(e, F);
               },
               VIDEO: function (e) {
                 B(e, function (e) {
-                  Y(e, F);
+                  j(e, F);
                 }),
-                  Y(e, H),
+                  j(e, H),
                   e.load();
               },
               OBJECT: function (e) {
-                Y(e, W);
+                j(e, W);
               },
             },
             ue = function (e, t) {
@@ -4059,7 +4059,7 @@
             : e.emit(`slidePrevTransition${i}`);
       }
     }
-    const Y = {
+    const j = {
       setTransition: function (e, t) {
         const s = this;
         s.params.cssMode || (s.wrapperEl.style.transitionDuration = `${e}ms`),
@@ -4081,7 +4081,7 @@
             q({ swiper: s, runCallbacks: e, direction: t, step: "End" }));
       },
     };
-    const j = {
+    const Y = {
       slideTo: function (e = 0, t = this.params.speed, s = !0, i, n) {
         "string" == typeof e && (e = parseInt(e, 10));
         const o = this;
@@ -5322,8 +5322,8 @@
         eventsEmitter: H,
         update: N,
         translate: V,
-        transition: Y,
-        slide: j,
+        transition: j,
+        slide: Y,
         loop: Z,
         grabCursor: U,
         events: le,
@@ -6489,7 +6489,7 @@
       Ne = "lgBeforePrevSlide",
       Ve = "lgBeforeClose",
       qe = "lgAfterClose",
-      Ye = {
+      je = {
         mode: "lg-slide",
         easing: "ease",
         speed: 400,
@@ -6563,7 +6563,7 @@
           playVideo: "Play video",
         },
       };
-    var je = (function () {
+    var Ye = (function () {
       function e(e) {
         return (
           (this.cssVenderPrefixes = [
@@ -6889,7 +6889,7 @@
           (Element.prototype.matches =
             Element.prototype.msMatchesSelector ||
             Element.prototype.webkitMatchesSelector),
-        new je(e)
+        new Ye(e)
       );
     }
     var Ue = [
@@ -7182,7 +7182,7 @@
         return (
           (e.prototype.generateSettings = function (e) {
             if (
-              ((this.settings = Le(Le({}, Ye), e)),
+              ((this.settings = Le(Le({}, je), e)),
               this.settings.isMobile &&
               "function" == typeof this.settings.isMobile
                 ? this.settings.isMobile()
@@ -7227,7 +7227,7 @@
                 t = function (t) {
                   var i = s.items[t],
                     n = Ze(i),
-                    o = je.generateUUID();
+                    o = Ye.generateUUID();
                   n.attr("data-lg-id", o).on(
                     "click.lgcustom-item-" + o,
                     function (s) {
@@ -8813,6 +8813,74 @@
             });
         }
       })(),
+      (function () {
+        const e = document.querySelectorAll(
+          "input[placeholder],textarea[placeholder]"
+        );
+        e.length &&
+          e.forEach((e) => {
+            e.dataset.placeholder = e.placeholder;
+          }),
+          document.body.addEventListener("focusin", function (e) {
+            const t = e.target;
+            ("INPUT" !== t.tagName && "TEXTAREA" !== t.tagName) ||
+              (t.dataset.placeholder && (t.placeholder = ""),
+              t.classList.add("_form-focus"),
+              t.parentElement.classList.add("_form-focus"),
+              p.removeError(t));
+          }),
+          document.body.addEventListener("focusout", function (e) {
+            const t = e.target;
+            ("INPUT" !== t.tagName && "TEXTAREA" !== t.tagName) ||
+              (t.dataset.placeholder && (t.placeholder = t.dataset.placeholder),
+              t.classList.remove("_form-focus"),
+              t.parentElement.classList.remove("_form-focus"),
+              t.hasAttribute("data-validate") && p.validateInput(t));
+          });
+      })(),
+      (function (e) {
+        const t = document.forms;
+        if (t.length)
+          for (const e of t)
+            e.addEventListener("submit", function (e) {
+              s(e.target, e);
+            }),
+              e.addEventListener("reset", function (e) {
+                const t = e.target;
+                p.formClean(t);
+              });
+        async function s(t, s) {
+          if (0 === (e ? p.getErrors(t) : 0)) {
+            if (t.hasAttribute("data-ajax")) {
+              s.preventDefault();
+              const e = t.getAttribute("action")
+                  ? t.getAttribute("action").trim()
+                  : "#",
+                n = t.getAttribute("method")
+                  ? t.getAttribute("method").trim()
+                  : "GET",
+                o = new FormData(t);
+              t.classList.add("_sending");
+              const r = await fetch(e, { method: n, body: o });
+              if (r.ok) {
+                await r.json();
+                t.classList.remove("_sending"), i(t);
+              } else alert("Ошибка"), t.classList.remove("_sending");
+            } else t.hasAttribute("data-dev") && (s.preventDefault(), i(t));
+          } else {
+            s.preventDefault();
+            const e = t.querySelector("._form-error");
+            e && t.hasAttribute("data-goto-error") && u(e, !0, 1e3);
+          }
+        }
+        function i(e) {
+          document.dispatchEvent(
+            new CustomEvent("formSent", { detail: { form: e } })
+          ),
+            p.formClean(e),
+            a(`[Формы]: ${"Форма отправлена!"}`);
+        }
+      })(!0),
       (g.selectModule = new h({})),
       new Ee({}),
       (function () {
