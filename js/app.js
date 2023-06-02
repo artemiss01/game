@@ -1740,32 +1740,32 @@
                     .replace(/^\s+/, "")
                     .replace(/\s+$/, ""));
             },
-            P = function (e) {
+            k = function (e) {
               return e.llTempImage;
             },
-            _ = function (e, t) {
+            P = function (e, t) {
               if (t) {
                 var s = t._observer;
                 s && s.unobserve(e);
               }
             },
-            k = function (e, t) {
+            _ = function (e, t) {
               e && (e.loadingCount += t);
             },
-            $ = function (e, t) {
+            D = function (e, t) {
               e && (e.toLoadCount = t);
             },
-            D = function (e) {
+            $ = function (e) {
               for (var t, s = [], i = 0; (t = e.children[i]); i += 1)
                 "SOURCE" === t.tagName && s.push(t);
               return s;
             },
             G = function (e, t) {
               var s = e.parentNode;
-              s && "PICTURE" === s.tagName && D(s).forEach(t);
+              s && "PICTURE" === s.tagName && $(s).forEach(t);
             },
             B = function (e, t) {
-              D(e).forEach(t);
+              $(e).forEach(t);
             },
             F = [c],
             H = [c, h],
@@ -1803,13 +1803,13 @@
               O(e, t.class_applied),
                 x(e, v),
                 s &&
-                  (t.unobserve_completed && _(e, t),
+                  (t.unobserve_completed && P(e, t),
                   M(t.callback_applied, e, s));
             },
             Z = function (e, t, s) {
               O(e, t.class_loading),
                 x(e, m),
-                s && (k(s, 1), M(t.callback_loading, e, s));
+                s && (_(s, 1), M(t.callback_loading, e, s));
             },
             U = function (e, t, s) {
               s && e.setAttribute(t, s);
@@ -1877,15 +1877,15 @@
               !(function (e) {
                 delete e.llTempImage;
               })(e),
-                k(s, -1),
+                _(s, -1),
                 (function (e) {
                   e && (e.toLoadCount -= 1);
                 })(s),
                 z(e, t.class_loading),
-                t.unobserve_completed && _(e, s);
+                t.unobserve_completed && P(e, s);
             },
             re = function (e, t, s) {
-              var i = P(e) || e;
+              var i = k(e) || e;
               ie(i) ||
                 (function (e, t, s) {
                   ie(e) || (e.llEvLisnrs = {});
@@ -1937,7 +1937,7 @@
                           r = o && n ? n : i;
                         r &&
                           ((e.style.backgroundImage = 'url("'.concat(r, '")')),
-                          P(e).setAttribute(c, r),
+                          k(e).setAttribute(c, r),
                           Z(e, t, s));
                       })(e, t, s),
                       (function (e, t, s) {
@@ -2038,7 +2038,7 @@
                         O(e, s.class_entered),
                         z(e, s.class_exited),
                         (function (e, t, s) {
-                          t.unobserve_entered && _(e, s);
+                          t.unobserve_entered && P(e, s);
                         })(e, s, i),
                         M(s.callback_enter, e, t, i),
                         n || le(e, s, i);
@@ -2061,7 +2061,7 @@
                             })(e),
                             ce(e),
                             z(e, s.class_loading),
-                            k(i, -1),
+                            _(i, -1),
                             E(e),
                             M(s.callback_cancel, e, t, i));
                         })(e, t, s, i),
@@ -2126,7 +2126,7 @@
                   n,
                   o = this._settings,
                   r = be(e, o);
-                $(this, r.length),
+                D(this, r.length),
                   !s && i
                     ? ge(o)
                       ? (function (e, t, s) {
@@ -2142,7 +2142,7 @@
                                   x(e, y);
                               })(e, t, s);
                           }),
-                            $(s, 0);
+                            D(s, 0);
                         })(r, o, this)
                       : ((n = r),
                         (function (e) {
@@ -2172,7 +2172,7 @@
                 var t = this,
                   s = this._settings;
                 be(e, s).forEach(function (e) {
-                  _(e, t), le(e, s, t);
+                  P(e, t), le(e, s, t);
                 });
               },
               restoreAll: function () {
@@ -3159,14 +3159,14 @@
         return t;
       }
     }
-    function P(e, t) {
+    function k(e, t) {
       const s = [];
       let i = e.parentElement;
       for (; i; )
         t ? i.matches(t) && s.push(i) : s.push(i), (i = i.parentElement);
       return s;
     }
-    function _(e, t, s) {
+    function P(e, t, s) {
       const i = S();
       return s
         ? e["width" === t ? "offsetWidth" : "offsetHeight"] +
@@ -3184,11 +3184,11 @@
             )
         : e.offsetWidth;
     }
-    let k, $, D;
+    let _, D, $;
     function G() {
       return (
-        k ||
-          (k = (function () {
+        _ ||
+          (_ = (function () {
             const e = S(),
               t = b();
             return {
@@ -3201,13 +3201,13 @@
               ),
             };
           })()),
-        k
+        _
       );
     }
     function B(e = {}) {
       return (
-        $ ||
-          ($ = (function ({ userAgent: e } = {}) {
+        D ||
+          (D = (function ({ userAgent: e } = {}) {
             const t = G(),
               s = S(),
               i = s.navigator.platform,
@@ -3247,13 +3247,13 @@
               o
             );
           })(e)),
-        $
+        D
       );
     }
     function F() {
       return (
-        D ||
-          (D = (function () {
+        $ ||
+          ($ = (function () {
             const e = S();
             let t = !1;
             function s() {
@@ -3283,7 +3283,7 @@
               ),
             };
           })()),
-        D
+        $
       );
     }
     const H = {
@@ -3522,7 +3522,7 @@
                 a && (o.style.webkitTransform = "none"),
                 i.roundLengths)
               )
-                E = e.isHorizontal() ? _(o, "width", !0) : _(o, "height", !0);
+                E = e.isHorizontal() ? P(o, "width", !0) : P(o, "height", !0);
               else {
                 const e = s(r, "width"),
                   t = s(r, "padding-left"),
@@ -5849,7 +5849,7 @@
             s("init", () => {
               if (e.params.observer) {
                 if (e.params.observeParents) {
-                  const t = P(e.el);
+                  const t = k(e.el);
                   for (let e = 0; e < t.length; e += 1) r(t[e]);
                 }
                 r(e.el, { childList: e.params.observeSlideChildren }),
@@ -5974,7 +5974,7 @@
           let l, a, h;
           if (
             (s.dynamicBullets &&
-              ((o = _(i[0], e.isHorizontal() ? "width" : "height", !0)),
+              ((o = P(i[0], e.isHorizontal() ? "width" : "height", !0)),
               u.forEach((t) => {
                 t.style[e.isHorizontal() ? "width" : "height"] =
                   o * (s.dynamicMainBullets + 4) + "px";
@@ -6157,7 +6157,7 @@
               s.length > 1 &&
               ((s = [...e.el.querySelectorAll(t.el)]),
               s.length > 1 &&
-                (s = s.filter((t) => P(t, ".swiper")[0] === e.el)[0])),
+                (s = s.filter((t) => k(t, ".swiper")[0] === e.el)[0])),
             Array.isArray(s) && 1 === s.length && (s = s[0]),
             Object.assign(e.pagination, { el: s }),
             (s = l(s)),
@@ -6294,11 +6294,274 @@
         destroy: p,
       });
     }
-    let Se, we;
-    we = document.querySelector(".slider__btn-next");
-    let Ce,
-      Te = 0;
-    function xe() {
+    function Se({ swiper: e, extendParams: t, on: s }) {
+      t({
+        a11y: {
+          enabled: !0,
+          notificationClass: "swiper-notification",
+          prevSlideMessage: "Previous slide",
+          nextSlideMessage: "Next slide",
+          firstSlideMessage: "This is the first slide",
+          lastSlideMessage: "This is the last slide",
+          paginationBulletMessage: "Go to slide {{index}}",
+          slideLabelMessage: "{{index}} / {{slidesLength}}",
+          containerMessage: null,
+          containerRoleDescriptionMessage: null,
+          itemRoleDescriptionMessage: null,
+          slideRole: "group",
+          id: null,
+        },
+      }),
+        (e.a11y = { clicked: !1 });
+      let i = null;
+      function n(e) {
+        const t = i;
+        0 !== t.length && ((t.innerHTML = ""), (t.innerHTML = e));
+      }
+      const o = (e) => (Array.isArray(e) || (e = [e].filter((e) => !!e)), e);
+      function r(e) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("tabIndex", "0");
+        });
+      }
+      function l(e) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("tabIndex", "-1");
+        });
+      }
+      function a(e, t) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("role", t);
+        });
+      }
+      function c(e, t) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("aria-roledescription", t);
+        });
+      }
+      function d(e, t) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("aria-label", t);
+        });
+      }
+      function u(e) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("aria-disabled", !0);
+        });
+      }
+      function h(e) {
+        (e = o(e)).forEach((e) => {
+          e.setAttribute("aria-disabled", !1);
+        });
+      }
+      function g(t) {
+        if (13 !== t.keyCode && 32 !== t.keyCode) return;
+        const s = e.params.a11y,
+          i = t.target;
+        (e.pagination &&
+          e.pagination.el &&
+          (i === e.pagination.el || e.pagination.el.contains(t.target)) &&
+          !t.target.matches(be(e.params.pagination.bulletClass))) ||
+          (e.navigation &&
+            e.navigation.nextEl &&
+            i === e.navigation.nextEl &&
+            ((e.isEnd && !e.params.loop) || e.slideNext(),
+            e.isEnd ? n(s.lastSlideMessage) : n(s.nextSlideMessage)),
+          e.navigation &&
+            e.navigation.prevEl &&
+            i === e.navigation.prevEl &&
+            ((e.isBeginning && !e.params.loop) || e.slidePrev(),
+            e.isBeginning ? n(s.firstSlideMessage) : n(s.prevSlideMessage)),
+          e.pagination &&
+            i.matches(be(e.params.pagination.bulletClass)) &&
+            i.click());
+      }
+      function p() {
+        return (
+          e.pagination && e.pagination.bullets && e.pagination.bullets.length
+        );
+      }
+      function m() {
+        return p() && e.params.pagination.clickable;
+      }
+      const f = (e, t, s) => {
+          r(e),
+            "BUTTON" !== e.tagName &&
+              (a(e, "button"), e.addEventListener("keydown", g)),
+            d(e, s),
+            (function (e, t) {
+              (e = o(e)).forEach((e) => {
+                e.setAttribute("aria-controls", t);
+              });
+            })(e, t);
+        },
+        v = () => {
+          e.a11y.clicked = !0;
+        },
+        b = () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              e.destroyed || (e.a11y.clicked = !1);
+            });
+          });
+        },
+        y = (t) => {
+          if (e.a11y.clicked) return;
+          const s = t.target.closest(`.${e.params.slideClass}, swiper-slide`);
+          if (!s || !e.slides.includes(s)) return;
+          const i = e.slides.indexOf(s) === e.activeIndex,
+            n =
+              e.params.watchSlidesProgress &&
+              e.visibleSlides &&
+              e.visibleSlides.includes(s);
+          i ||
+            n ||
+            (t.sourceCapabilities && t.sourceCapabilities.firesTouchEvents) ||
+            (e.isHorizontal() ? (e.el.scrollLeft = 0) : (e.el.scrollTop = 0),
+            e.slideTo(e.slides.indexOf(s), 0));
+        },
+        S = () => {
+          const t = e.params.a11y;
+          t.itemRoleDescriptionMessage &&
+            c(e.slides, t.itemRoleDescriptionMessage),
+            t.slideRole && a(e.slides, t.slideRole);
+          const s = e.slides.length;
+          t.slideLabelMessage &&
+            e.slides.forEach((i, n) => {
+              const o = e.params.loop
+                ? parseInt(i.getAttribute("data-swiper-slide-index"), 10)
+                : n;
+              d(
+                i,
+                t.slideLabelMessage
+                  .replace(/\{\{index\}\}/, o + 1)
+                  .replace(/\{\{slidesLength\}\}/, s)
+              );
+            });
+        },
+        w = () => {
+          const t = e.params.a11y;
+          e.isElement ? e.el.shadowEl.append(i) : e.el.append(i);
+          const s = e.el;
+          t.containerRoleDescriptionMessage &&
+            c(s, t.containerRoleDescriptionMessage),
+            t.containerMessage && d(s, t.containerMessage);
+          const n = e.wrapperEl,
+            r =
+              t.id ||
+              n.getAttribute("id") ||
+              `swiper-wrapper-${(function (e = 16) {
+                return "x"
+                  .repeat(e)
+                  .replace(/x/g, () =>
+                    Math.round(16 * Math.random()).toString(16)
+                  );
+              })(16)}`,
+            l =
+              e.params.autoplay && e.params.autoplay.enabled ? "off" : "polite";
+          var a;
+          (a = r),
+            o(n).forEach((e) => {
+              e.setAttribute("id", a);
+            }),
+            (function (e, t) {
+              (e = o(e)).forEach((e) => {
+                e.setAttribute("aria-live", t);
+              });
+            })(n, l),
+            S();
+          let { nextEl: u, prevEl: h } = e.navigation ? e.navigation : {};
+          if (
+            ((u = o(u)),
+            (h = o(h)),
+            u && u.forEach((e) => f(e, r, t.nextSlideMessage)),
+            h && h.forEach((e) => f(e, r, t.prevSlideMessage)),
+            m())
+          ) {
+            (Array.isArray(e.pagination.el)
+              ? e.pagination.el
+              : [e.pagination.el]
+            ).forEach((e) => {
+              e.addEventListener("keydown", g);
+            });
+          }
+          e.el.addEventListener("focus", y, !0),
+            e.el.addEventListener("pointerdown", v, !0),
+            e.el.addEventListener("pointerup", b, !0);
+        };
+      s("beforeInit", () => {
+        (i = M("span", e.params.a11y.notificationClass)),
+          i.setAttribute("aria-live", "assertive"),
+          i.setAttribute("aria-atomic", "true");
+      }),
+        s("afterInit", () => {
+          e.params.a11y.enabled && w();
+        }),
+        s(
+          "slidesLengthChange snapGridLengthChange slidesGridLengthChange",
+          () => {
+            e.params.a11y.enabled && S();
+          }
+        ),
+        s("fromEdge toEdge afterInit lock unlock", () => {
+          e.params.a11y.enabled &&
+            (function () {
+              if (e.params.loop || e.params.rewind || !e.navigation) return;
+              const { nextEl: t, prevEl: s } = e.navigation;
+              s && (e.isBeginning ? (u(s), l(s)) : (h(s), r(s))),
+                t && (e.isEnd ? (u(t), l(t)) : (h(t), r(t)));
+            })();
+        }),
+        s("paginationUpdate", () => {
+          e.params.a11y.enabled &&
+            (function () {
+              const t = e.params.a11y;
+              p() &&
+                e.pagination.bullets.forEach((s) => {
+                  e.params.pagination.clickable &&
+                    (r(s),
+                    e.params.pagination.renderBullet ||
+                      (a(s, "button"),
+                      d(
+                        s,
+                        t.paginationBulletMessage.replace(
+                          /\{\{index\}\}/,
+                          z(s) + 1
+                        )
+                      ))),
+                    s.matches(be(e.params.pagination.bulletActiveClass))
+                      ? s.setAttribute("aria-current", "true")
+                      : s.removeAttribute("aria-current");
+                });
+            })();
+        }),
+        s("destroy", () => {
+          e.params.a11y.enabled &&
+            (function () {
+              i && i.remove();
+              let { nextEl: t, prevEl: s } = e.navigation ? e.navigation : {};
+              (t = o(t)),
+                (s = o(s)),
+                t && t.forEach((e) => e.removeEventListener("keydown", g)),
+                s && s.forEach((e) => e.removeEventListener("keydown", g)),
+                m() &&
+                  (Array.isArray(e.pagination.el)
+                    ? e.pagination.el
+                    : [e.pagination.el]
+                  ).forEach((e) => {
+                    e.removeEventListener("keydown", g);
+                  });
+              e.el.removeEventListener("focus", y, !0),
+                e.el.removeEventListener("pointerdown", v, !0),
+                e.el.removeEventListener("pointerup", b, !0);
+            })();
+        });
+    }
+    let we, Ce;
+    Ce = document.querySelector(".slider__btn-next");
+    let Te,
+      xe = 0;
+    function Ee() {
       let e = document.querySelectorAll(
         '[class*="__swiper"]:not(.swiper-wrapper)'
       );
@@ -6310,11 +6573,11 @@
         });
     }
     window.addEventListener("load", function (e) {
-      xe(),
-        (Ce = document.querySelectorAll(".swiper-slide")),
+      Ee(),
+        (Te = document.querySelectorAll(".swiper-slide")),
         document.querySelector(".slider") &&
-          (Se = new ve(".slider", {
-            modules: [ye],
+          (we = new ve(".slider", {
+            modules: [ye, Se],
             observer: !0,
             observeParents: !0,
             slidesPerView: 1,
@@ -6323,22 +6586,26 @@
             loop: !0,
             pagination: { el: ".slider__pagination", clickable: !1 },
             navigation: { prevEl: ".swiper-button-prev" },
+            a11y: {
+              prevSlideMessage: "Previous slide",
+              nextSlideMessage: "Next slide",
+            },
             on: {},
           }));
     }),
-      we &&
-        we.addEventListener("click", function () {
-          Te < Ce.length - 1
-            ? ((Te += 1), Se.slideTo(Te))
-            : ((Te = 0), Se.slideTo(Te));
-          Se.slideTo(Te);
+      Ce &&
+        Ce.addEventListener("click", function () {
+          xe < Te.length - 1
+            ? ((xe += 1), we.slideTo(xe))
+            : ((xe = 0), we.slideTo(xe));
+          we.slideTo(xe);
         });
     new (s(732))({
       elements_selector: "[data-src]",
       class_loaded: "_lazy-loaded",
       use_native: !0,
     });
-    class Ee {
+    class Ie {
       constructor(e) {
         (this.config = Object.assign({ logging: !0 }, e)),
           this.observer,
@@ -6448,18 +6715,18 @@
           );
       }
     }
-    let Ie = !1;
+    let Le = !1;
     setTimeout(() => {
-      if (Ie) {
+      if (Le) {
         let e = new Event("windowScroll");
         window.addEventListener("scroll", function (t) {
           document.dispatchEvent(e);
         });
       }
     }, 0);
-    var Le = function () {
+    var Ae = function () {
       return (
-        (Le =
+        (Ae =
           Object.assign ||
           function (e) {
             for (var t, s = 1, i = arguments.length; s < i; s++)
@@ -6467,29 +6734,29 @@
                 Object.prototype.hasOwnProperty.call(t, n) && (e[n] = t[n]);
             return e;
           }),
-        Le.apply(this, arguments)
+        Ae.apply(this, arguments)
       );
     };
-    var Ae = "lgAfterAppendSlide",
-      Me = "lgInit",
-      Oe = "lgHasVideo",
-      ze = "lgContainerResize",
+    var Me = "lgAfterAppendSlide",
+      Oe = "lgInit",
+      ze = "lgHasVideo",
+      ke = "lgContainerResize",
       Pe = "lgUpdateSlides",
       _e = "lgAfterAppendSubHtml",
-      ke = "lgBeforeOpen",
+      De = "lgBeforeOpen",
       $e = "lgAfterOpen",
-      De = "lgSlideItemLoad",
-      Ge = "lgBeforeSlide",
-      Be = "lgAfterSlide",
-      Fe = "lgPosterClick",
-      He = "lgDragStart",
-      Re = "lgDragMove",
-      We = "lgDragEnd",
-      Xe = "lgBeforeNextSlide",
-      Ne = "lgBeforePrevSlide",
-      Ve = "lgBeforeClose",
-      qe = "lgAfterClose",
-      je = {
+      Ge = "lgSlideItemLoad",
+      Be = "lgBeforeSlide",
+      Fe = "lgAfterSlide",
+      He = "lgPosterClick",
+      Re = "lgDragStart",
+      We = "lgDragMove",
+      Xe = "lgDragEnd",
+      Ne = "lgBeforeNextSlide",
+      Ve = "lgBeforePrevSlide",
+      qe = "lgBeforeClose",
+      je = "lgAfterClose",
+      Ye = {
         mode: "lg-slide",
         easing: "ease",
         speed: 400,
@@ -6563,7 +6830,7 @@
           playVideo: "Play video",
         },
       };
-    var Ye = (function () {
+    var Ze = (function () {
       function e(e) {
         return (
           (this.cssVenderPrefixes = [
@@ -6645,18 +6912,18 @@
               this);
         }),
         (e.prototype.find = function (e) {
-          return Ze(this._getSelector(e, this.selector));
+          return Ue(this._getSelector(e, this.selector));
         }),
         (e.prototype.first = function () {
           return this.selector && void 0 !== this.selector.length
-            ? Ze(this.selector[0])
-            : Ze(this.selector);
+            ? Ue(this.selector[0])
+            : Ue(this.selector);
         }),
         (e.prototype.eq = function (e) {
-          return Ze(this.selector[e]);
+          return Ue(this.selector[e]);
         }),
         (e.prototype.parent = function () {
-          return Ze(this.selector.parentElement);
+          return Ue(this.selector.parentElement);
         }),
         (e.prototype.get = function () {
           return this._getFirstEl();
@@ -6843,7 +7110,7 @@
         (e.prototype.offset = function () {
           if (!this.firstElement) return { left: 0, top: 0 };
           var e = this.firstElement.getBoundingClientRect(),
-            t = Ze("body").style().marginLeft;
+            t = Ue("body").style().marginLeft;
           return {
             left: e.left - parseFloat(t) + this.scrollLeft(),
             top: e.top + this.scrollTop(),
@@ -6875,7 +7142,7 @@
         e
       );
     })();
-    function Ze(e) {
+    function Ue(e) {
       return (
         (function () {
           if ("function" == typeof window.CustomEvent) return !1;
@@ -6889,10 +7156,10 @@
           (Element.prototype.matches =
             Element.prototype.msMatchesSelector ||
             Element.prototype.webkitMatchesSelector),
-        new Ye(e)
+        new Ze(e)
       );
     }
-    var Ue = [
+    var Ke = [
       "src",
       "sources",
       "subHtml",
@@ -6918,7 +7185,7 @@
       "disqusIdentifier",
       "disqusUrl",
     ];
-    function Ke(e) {
+    function Je(e) {
       return "href" === e
         ? "src"
         : (e = (e =
@@ -6927,9 +7194,9 @@
             return e[1].toUpperCase();
           }));
     }
-    var Je = function (e, t, s, i) {
+    var Qe = function (e, t, s, i) {
         void 0 === s && (s = 0);
-        var n = Ze(e).attr("data-lg-size") || i;
+        var n = Ue(e).attr("data-lg-size") || i;
         if (n) {
           var o = n.split(",");
           if (o[1])
@@ -6952,9 +7219,9 @@
           return { width: d * f, height: u * f };
         }
       },
-      Qe = function (e, t, s, i, n) {
+      et = function (e, t, s, i, n) {
         if (n) {
-          var o = Ze(e).find("img").first();
+          var o = Ue(e).find("img").first();
           if (o.get()) {
             var r = t.get().getBoundingClientRect(),
               l = r.width,
@@ -6967,14 +7234,14 @@
                 o.offset().left +
                 (parseFloat(u.paddingLeft) || 0) +
                 (parseFloat(u.borderLeft) || 0) +
-                Ze(window).scrollLeft() +
+                Ue(window).scrollLeft() +
                 r.left,
               g =
                 (a - d) / 2 -
                 o.offset().top +
                 (parseFloat(u.paddingTop) || 0) +
                 (parseFloat(u.borderTop) || 0) +
-                Ze(window).scrollTop() +
+                Ue(window).scrollTop() +
                 s;
             return (
               "translate3d(" +
@@ -6990,7 +7257,7 @@
           }
         }
       },
-      et = function (e, t, s, i, n, o) {
+      tt = function (e, t, s, i, n, o) {
         return (
           '<div class="lg-video-cont lg-has-iframe" style="width:' +
           e +
@@ -7007,7 +7274,7 @@
           '"  allowfullscreen="true"></iframe>\n                </div>'
         );
       },
-      tt = function (e, t, s, i, n, o) {
+      st = function (e, t, s, i, n, o) {
         var r =
             "<img " +
             s +
@@ -7033,7 +7300,7 @@
           }));
         return "" + l + r;
       },
-      st = function (e) {
+      it = function (e) {
         for (var t = [], s = [], i = "", n = 0; n < e.length; n++) {
           var o = e[n].split(" ");
           "" === o[0] && o.splice(0, 1), s.push(o[0]), t.push(o[1]);
@@ -7045,10 +7312,10 @@
           }
         return i;
       },
-      it = function (e) {
+      nt = function (e) {
         return !!e && !!e.complete && 0 !== e.naturalWidth;
       },
-      nt = function (e, t, s, i, n) {
+      ot = function (e, t, s, i, n) {
         return (
           '<div class="lg-video-cont ' +
           (n && n.youtube
@@ -7069,7 +7336,7 @@
           '" />\n        </div>'
         );
       },
-      ot = function (e) {
+      rt = function (e) {
         var t = e.querySelectorAll(
           'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'
         );
@@ -7078,7 +7345,7 @@
           return "none" !== t.display && "hidden" !== t.visibility;
         });
       },
-      rt = function (e, t, s, i) {
+      lt = function (e, t, s, i) {
         var n = [],
           o = (function () {
             for (var e = 0, t = 0, s = arguments.length; t < s; t++)
@@ -7089,18 +7356,18 @@
               for (var o = arguments[t], r = 0, l = o.length; r < l; r++, n++)
                 i[n] = o[r];
             return i;
-          })(Ue, t);
+          })(Ke, t);
         return (
           [].forEach.call(e, function (e) {
             for (var t = {}, r = 0; r < e.attributes.length; r++) {
               var l = e.attributes[r];
               if (l.specified) {
-                var a = Ke(l.name),
+                var a = Je(l.name),
                   c = "";
                 o.indexOf(a) > -1 && (c = a), c && (t[c] = l.value);
               }
             }
-            var d = Ze(e),
+            var d = Ue(e),
               u = d.find("img").first().attr("alt"),
               h = d.attr("title"),
               g = i ? d.attr(i) : d.find("img").first().attr("src");
@@ -7112,10 +7379,10 @@
           n
         );
       },
-      lt = function () {
+      at = function () {
         return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       },
-      at = function (e, t, s) {
+      ct = function (e, t, s) {
         if (!e)
           return t
             ? { html5: !0 }
@@ -7141,8 +7408,8 @@
           ? { wistia: o }
           : void 0;
       },
-      ct = 0,
-      dt = (function () {
+      dt = 0,
+      ut = (function () {
         function e(e, t) {
           if (
             ((this.lgOpened = !1),
@@ -7160,10 +7427,10 @@
           )
             return this;
           if (
-            (ct++,
-            (this.lgId = ct),
+            (dt++,
+            (this.lgId = dt),
             (this.el = e),
-            (this.LGel = Ze(e)),
+            (this.LGel = Ue(e)),
             this.generateSettings(t),
             this.buildModules(),
             this.settings.dynamic &&
@@ -7182,17 +7449,17 @@
         return (
           (e.prototype.generateSettings = function (e) {
             if (
-              ((this.settings = Le(Le({}, je), e)),
+              ((this.settings = Ae(Ae({}, Ye), e)),
               this.settings.isMobile &&
               "function" == typeof this.settings.isMobile
                 ? this.settings.isMobile()
-                : lt())
+                : at())
             ) {
-              var t = Le(
-                Le({}, this.settings.mobileSettings),
+              var t = Ae(
+                Ae({}, this.settings.mobileSettings),
                 this.settings.mobileSettings
               );
-              this.settings = Le(Le({}, this.settings), t);
+              this.settings = Ae(Ae({}, this.settings), t);
             }
           }),
           (e.prototype.normalizeSettings = function () {
@@ -7212,7 +7479,7 @@
             var e = this;
             this.addSlideVideoInfo(this.galleryItems),
               this.buildStructure(),
-              this.LGel.trigger(Me, { instance: this }),
+              this.LGel.trigger(Oe, { instance: this }),
               this.settings.keyPress && this.keyPress(),
               setTimeout(function () {
                 e.enableDrag(), e.enableSwipe(), e.triggerPosterClick();
@@ -7226,8 +7493,8 @@
               var e = this,
                 t = function (t) {
                   var i = s.items[t],
-                    n = Ze(i),
-                    o = Ye.generateUUID();
+                    n = Ue(i),
+                    o = Ze.generateUUID();
                   n.attr("data-lg-id", o).on(
                     "click.lgcustom-item-" + o,
                     function (s) {
@@ -7247,7 +7514,7 @@
           (e.prototype.buildModules = function () {
             var e = this;
             this.settings.plugins.forEach(function (t) {
-              e.plugins.push(new t(e, Ze));
+              e.plugins.push(new t(e, Ue));
             });
           }),
           (e.prototype.validateLicense = function () {
@@ -7261,7 +7528,7 @@
               : console.error("Please provide a valid license key");
           }),
           (e.prototype.getSlideItem = function (e) {
-            return Ze(this.getSlideItemId(e));
+            return Ue(this.getSlideItemId(e));
           }),
           (e.prototype.getSlideItemId = function (e) {
             return "#lg-item-" + this.lgId + "-" + e;
@@ -7270,7 +7537,7 @@
             return e + "-" + this.lgId;
           }),
           (e.prototype.getElementById = function (e) {
-            return Ze("#" + this.getIdName(e));
+            return Ue("#" + this.getIdName(e));
           }),
           (e.prototype.manageSingleSlideClassName = function () {
             this.galleryItems.length < 2
@@ -7364,9 +7631,9 @@
                   '" class="lg-components">\n                    ' +
                   (".lg-sub-html" === this.settings.appendSubHtmlTo ? s : "") +
                   "\n                </div>\n            </div>\n        </div>\n        ";
-              Ze(this.settings.container).append(c),
+              Ue(this.settings.container).append(c),
                 document.body !== this.settings.container &&
-                  Ze(this.settings.container).css("position", "relative"),
+                  Ue(this.settings.container).css("position", "relative"),
                 (this.outer = this.getElementById("lg-outer")),
                 (this.$lgComponents = this.getElementById("lg-components")),
                 (this.$backdrop = this.getElementById("lg-backdrop")),
@@ -7399,7 +7666,7 @@
                       '" download class="lg-download lg-icon"></a>'
                   ),
                 this.counter(),
-                Ze(window).on(
+                Ue(window).on(
                   "resize.lg.global" +
                     this.lgId +
                     " orientationchange.lg.global" +
@@ -7422,7 +7689,7 @@
                 s = t.top,
                 i = t.bottom;
               if (
-                ((this.currentImageSize = Je(
+                ((this.currentImageSize = Qe(
                   this.items[this.index],
                   this.outer,
                   s + i,
@@ -7437,7 +7704,7 @@
                   .first()
                   .attr("style", n);
               }
-              this.LGel.trigger(ze);
+              this.LGel.trigger(ke);
             }
           }),
           (e.prototype.resizeVideoSlide = function (e, t) {
@@ -7474,13 +7741,13 @@
             else if (this.settings.selector)
               if ("string" == typeof this.settings.selector)
                 if (this.settings.selectWithin) {
-                  var e = Ze(this.settings.selectWithin);
+                  var e = Ue(this.settings.selectWithin);
                   this.items = e.find(this.settings.selector).get();
                 } else
                   this.items = this.el.querySelectorAll(this.settings.selector);
               else this.items = this.settings.selector;
             else this.items = this.el.children;
-            return rt(
+            return lt(
               this.items,
               this.settings.extraProps,
               this.settings.getCaptionFromTitleOrAlt,
@@ -7496,24 +7763,24 @@
           (e.prototype.hideScrollbar = function () {
             if (this.shouldHideScrollbar()) {
               this.bodyPaddingRight = parseFloat(
-                Ze("body").style().paddingRight
+                Ue("body").style().paddingRight
               );
               var e = document.documentElement.getBoundingClientRect(),
                 t = window.innerWidth - e.width;
-              Ze(document.body).css(
+              Ue(document.body).css(
                 "padding-right",
                 t + this.bodyPaddingRight + "px"
               ),
-                Ze(document.body).addClass("lg-overlay-open");
+                Ue(document.body).addClass("lg-overlay-open");
             }
           }),
           (e.prototype.resetScrollBar = function () {
             this.shouldHideScrollbar() &&
-              (Ze(document.body).css(
+              (Ue(document.body).css(
                 "padding-right",
                 this.bodyPaddingRight + "px"
               ),
-              Ze(document.body).removeClass("lg-overlay-open"));
+              Ue(document.body).removeClass("lg-overlay-open"));
           }),
           (e.prototype.openGallery = function (e, t) {
             var s = this;
@@ -7540,13 +7807,13 @@
               var c = this.galleryItems[e].__slideVideoInfo;
               this.zoomFromOrigin &&
                 t &&
-                ((this.currentImageSize = Je(
+                ((this.currentImageSize = Qe(
                   t,
                   this.outer,
                   l + a,
                   c && this.settings.videoMaxSize
                 )),
-                (o = Qe(t, this.outer, l, a, this.currentImageSize))),
+                (o = et(t, this.outer, l, a, this.currentImageSize))),
                 (this.zoomFromOrigin && o) ||
                   (this.outer.addClass(this.settings.startClass),
                   this.getSlideItem(e).removeClass("lg-complete"));
@@ -7557,10 +7824,10 @@
                 s.outer.addClass("lg-components-open");
               }, d),
                 (this.index = e),
-                this.LGel.trigger(ke),
+                this.LGel.trigger(De),
                 this.getSlideItem(e).addClass("lg-current"),
                 (this.lGalleryOn = !1),
-                (this.prevScrollTop = Ze(window).scrollTop()),
+                (this.prevScrollTop = Ue(window).scrollTop()),
                 setTimeout(function () {
                   if (s.zoomFromOrigin && o) {
                     var t = s.getSlideItem(e);
@@ -7595,7 +7862,7 @@
                     s.LGel.trigger($e);
                 }),
                 document.body === this.settings.container &&
-                  Ze("html").addClass("lg-on");
+                  Ue("html").addClass("lg-on");
             }
           }),
           (e.prototype.getMediaContainerPosition = function () {
@@ -7671,15 +7938,15 @@
                   (t =
                     this.settings.subHtmlSelectorRelative &&
                     !this.settings.dynamic
-                      ? Ze(this.items).eq(e).find(t).first().html()
-                      : Ze(t).first().html());
+                      ? Ue(this.items).eq(e).find(t).first().html()
+                      : Ue(t).first().html());
               } else t = "";
             if (".lg-item" !== this.settings.appendSubHtmlTo)
               s
                 ? this.outer.find(".lg-sub-html").load(s)
                 : this.outer.find(".lg-sub-html").html(t);
             else {
-              var n = Ze(this.getSlideItemId(e));
+              var n = Ue(this.getSlideItemId(e));
               s
                 ? n.load(s)
                 : n.append('<div class="lg-sub-html">' + t + "</div>");
@@ -7729,7 +7996,7 @@
           }),
           (e.prototype.getDummyImageContent = function (e, t, s) {
             var i;
-            if ((this.settings.dynamic || (i = Ze(this.items).eq(t)), i)) {
+            if ((this.settings.dynamic || (i = Ue(this.items).eq(t)), i)) {
               var n = void 0;
               if (
                 !(n = this.settings.exThumbImage
@@ -7764,13 +8031,13 @@
                 '<picture class="lg-img-wrap"> ' +
                 (this.isFirstSlideWithZoomAnimation()
                   ? this.getDummyImageContent(t, s, a)
-                  : tt(s, e, a, o, r, l)) +
+                  : st(s, e, a, o, r, l)) +
                 "</picture>";
             t.prepend(c);
           }),
           (e.prototype.onSlideObjectLoad = function (e, t, s, i) {
             var n = e.find(".lg-object").first();
-            it(n.get()) || t
+            nt(n.get()) || t
               ? s()
               : (n.on("load.lg error.lg", function () {
                   s && s();
@@ -7801,7 +8068,7 @@
               l = n && "video" === this.getSlideType(r) && !r.poster ? i : 0;
             setTimeout(function () {
               e.addClass("lg-complete lg-complete_"),
-                o.LGel.trigger(De, {
+                o.LGel.trigger(Ge, {
                   index: t,
                   delay: s || 0,
                   isFirstSlide: n,
@@ -7818,7 +8085,7 @@
           (e.prototype.addSlideVideoInfo = function (e) {
             var t = this;
             e.forEach(function (e, s) {
-              (e.__slideVideoInfo = at(e.src, !!e.video, s)),
+              (e.__slideVideoInfo = ct(e.src, !!e.video, s)),
                 e.__slideVideoInfo &&
                   t.settings.loadYouTubePoster &&
                   !e.poster &&
@@ -7832,7 +8099,7 @@
           (e.prototype.loadContent = function (e, t) {
             var s = this,
               i = this.galleryItems[e],
-              n = Ze(this.getSlideItemId(e)),
+              n = Ue(this.getSlideItemId(e)),
               o = i.poster,
               r = i.srcset,
               l = i.sizes,
@@ -7842,7 +8109,7 @@
               u = d && "string" == typeof d ? JSON.parse(d) : d;
             if (i.responsive) {
               var h = i.responsive.split(",");
-              c = st(h) || c;
+              c = it(h) || c;
             }
             var g = i.__slideVideoInfo,
               p = "",
@@ -7861,7 +8128,7 @@
                 var b = this.mediaContainerPosition,
                   y = b.top,
                   S = b.bottom,
-                  w = Je(
+                  w = Qe(
                     this.items[e],
                     this.outer,
                     y + S,
@@ -7870,7 +8137,7 @@
                 p = this.getVideoContStyle(w);
               }
               if (m) {
-                var C = et(
+                var C = tt(
                   this.settings.iframeWidth,
                   this.settings.iframeHeight,
                   this.settings.iframeMaxWidth,
@@ -7885,7 +8152,7 @@
                   this.zoomFromOrigin &&
                   this.currentImageSize &&
                   (T = this.getDummyImageContent(n, e, ""));
-                C = nt(o, T || "", p, this.settings.strings.playVideo, g);
+                C = ot(o, T || "", p, this.settings.strings.playVideo, g);
                 n.prepend(C);
               } else if (g) {
                 C = '<div class="lg-video-cont " style="' + p + '"></div>';
@@ -7895,19 +8162,19 @@
                 this.initPictureFill(x);
               }
               (o || g) &&
-                this.LGel.trigger(Oe, {
+                this.LGel.trigger(ze, {
                   index: e,
                   src: c,
                   html5Video: u,
                   hasPoster: !!o,
                 }),
-                this.LGel.trigger(Ae, { index: e }),
+                this.LGel.trigger(Me, { index: e }),
                 this.lGalleryOn &&
                   ".lg-item" === this.settings.appendSubHtmlTo &&
                   this.addHtml(e);
             }
             var E = 0;
-            v && !Ze(document.body).hasClass("lg-from-hash") && (E = v),
+            v && !Ue(document.body).hasClass("lg-from-hash") && (E = v),
               this.isFirstSlideWithZoomAnimation() &&
                 (setTimeout(function () {
                   n.removeClass(
@@ -7922,7 +8189,7 @@
                       if (
                         (n
                           .find(".lg-img-wrap")
-                          .append(tt(e, c, d, r, l, i.sources)),
+                          .append(st(e, c, d, r, l, i.sources)),
                         r || a)
                       ) {
                         var u = n.find(".lg-object");
@@ -8032,7 +8299,7 @@
                   s.$inner.append('<div id="' + e + '" class="lg-item"></div>');
               }),
               this.currentItemsInDom.forEach(function (e) {
-                -1 === i.indexOf(e) && Ze("#" + e).remove();
+                -1 === i.indexOf(e) && Ue("#" + e).remove();
               }),
               i
             );
@@ -8105,7 +8372,7 @@
                   var u = this.mediaContainerPosition,
                     h = u.top,
                     g = u.bottom,
-                    p = Je(
+                    p = Qe(
                       this.items[e],
                       this.outer,
                       h + g,
@@ -8114,7 +8381,7 @@
                   this.resizeVideoSlide(e, p);
                 }
                 if (
-                  (this.LGel.trigger(Ge, {
+                  (this.LGel.trigger(Be, {
                     prevIndex: o,
                     index: e,
                     fromTouch: !!t,
@@ -8154,7 +8421,7 @@
                   setTimeout(function () {
                     (n.lgBusy = !1),
                       a.removeClass("lg-slide-progress"),
-                      n.LGel.trigger(Be, {
+                      n.LGel.trigger(Fe, {
                         prevIndex: o,
                         index: e,
                         fromTouch: t,
@@ -8255,8 +8522,8 @@
                   (n.outer.find(".lg-item").removeAttr("style"),
                   o && Math.abs(e.pageX - t.pageX) < 5)
                 ) {
-                  var l = Ze(s.target);
-                  n.isPosterElement(l) && n.LGel.trigger(Fe);
+                  var l = Ue(s.target);
+                  n.isPosterElement(l) && n.LGel.trigger(He);
                 }
                 n.swipeDirection = void 0;
               }),
@@ -8276,7 +8543,7 @@
               (this.$inner.on("touchstart.lg", function (s) {
                 e.dragOrSwipeEnabled = !0;
                 var i = e.getSlideItem(e.index);
-                (!Ze(s.target).hasClass("lg-item") &&
+                (!Ue(s.target).hasClass("lg-item") &&
                   !i.get().contains(s.target)) ||
                   e.outer.hasClass("lg-zoomed") ||
                   e.lgBusy ||
@@ -8304,8 +8571,8 @@
                 if ("swipe" === e.touchAction) {
                   if (i) (i = !1), e.touchEnd(s, t, o);
                   else if (n) {
-                    var r = Ze(o.target);
-                    e.isPosterElement(r) && e.LGel.trigger(Fe);
+                    var r = Ue(o.target);
+                    e.isPosterElement(r) && e.LGel.trigger(He);
                   }
                   (e.touchAction = void 0), (n = !1);
                 }
@@ -8321,7 +8588,7 @@
               (this.outer.on("mousedown.lg", function (s) {
                 e.dragOrSwipeEnabled = !0;
                 var n = e.getSlideItem(e.index);
-                (Ze(s.target).hasClass("lg-item") ||
+                (Ue(s.target).hasClass("lg-item") ||
                   n.get().contains(s.target)) &&
                   (e.outer.hasClass("lg-zoomed") ||
                     e.lgBusy ||
@@ -8333,22 +8600,22 @@
                       (e.outer.get().scrollLeft += 1),
                       (e.outer.get().scrollLeft -= 1),
                       e.outer.removeClass("lg-grab").addClass("lg-grabbing"),
-                      e.LGel.trigger(He))));
+                      e.LGel.trigger(Re))));
               }),
-              Ze(window).on("mousemove.lg.global" + this.lgId, function (o) {
+              Ue(window).on("mousemove.lg.global" + this.lgId, function (o) {
                 i &&
                   e.lgOpened &&
                   ((n = !0),
                   (s = { pageX: o.pageX, pageY: o.pageY }),
                   e.touchMove(t, s),
-                  e.LGel.trigger(Re));
+                  e.LGel.trigger(We));
               }),
-              Ze(window).on("mouseup.lg.global" + this.lgId, function (o) {
+              Ue(window).on("mouseup.lg.global" + this.lgId, function (o) {
                 if (e.lgOpened) {
-                  var r = Ze(o.target);
+                  var r = Ue(o.target);
                   n
-                    ? ((n = !1), e.touchEnd(s, t, o), e.LGel.trigger(We))
-                    : e.isPosterElement(r) && e.LGel.trigger(Fe),
+                    ? ((n = !1), e.touchEnd(s, t, o), e.LGel.trigger(Xe))
+                    : e.isPosterElement(r) && e.LGel.trigger(He),
                     i &&
                       ((i = !1),
                       e.outer.removeClass("lg-grabbing").addClass("lg-grab"));
@@ -8359,8 +8626,8 @@
             var e = this;
             this.$inner.on("click.lg", function (t) {
               !e.dragOrSwipeEnabled &&
-                e.isPosterElement(Ze(t.target)) &&
-                e.LGel.trigger(Fe);
+                e.isPosterElement(Ue(t.target)) &&
+                e.LGel.trigger(He);
             });
           }),
           (e.prototype.manageSwipeClass = function () {
@@ -8384,11 +8651,11 @@
               this.lgBusy ||
                 (this.index + 1 < this.galleryItems.length
                   ? (this.index++,
-                    this.LGel.trigger(Xe, { index: this.index }),
+                    this.LGel.trigger(Ne, { index: this.index }),
                     this.slide(this.index, !!e, !1, "next"))
                   : s
                   ? ((this.index = 0),
-                    this.LGel.trigger(Xe, { index: this.index }),
+                    this.LGel.trigger(Ne, { index: this.index }),
                     this.slide(this.index, !!e, !1, "next"))
                   : this.settings.slideEndAnimation &&
                     !e &&
@@ -8404,11 +8671,11 @@
               this.lgBusy ||
                 (this.index > 0
                   ? (this.index--,
-                    this.LGel.trigger(Ne, { index: this.index, fromTouch: e }),
+                    this.LGel.trigger(Ve, { index: this.index, fromTouch: e }),
                     this.slide(this.index, !!e, !1, "prev"))
                   : s
                   ? ((this.index = this.galleryItems.length - 1),
-                    this.LGel.trigger(Ne, { index: this.index, fromTouch: e }),
+                    this.LGel.trigger(Ve, { index: this.index, fromTouch: e }),
                     this.slide(this.index, !!e, !1, "prev"))
                   : this.settings.slideEndAnimation &&
                     !e &&
@@ -8419,7 +8686,7 @@
           }),
           (e.prototype.keyPress = function () {
             var e = this;
-            Ze(window).on("keydown.lg.global" + this.lgId, function (t) {
+            Ue(window).on("keydown.lg.global" + this.lgId, function (t) {
               e.lgOpened &&
                 !0 === e.settings.escKey &&
                 27 === t.keyCode &&
@@ -8512,16 +8779,16 @@
           }),
           (e.prototype.invalidateItems = function () {
             for (var e = 0; e < this.items.length; e++) {
-              var t = Ze(this.items[e]);
+              var t = Ue(this.items[e]);
               t.off("click.lgcustom-item-" + t.attr("data-lg-id"));
             }
           }),
           (e.prototype.trapFocus = function () {
             var e = this;
             this.$container.get().focus({ preventScroll: !0 }),
-              Ze(window).on("keydown.lg.global" + this.lgId, function (t) {
+              Ue(window).on("keydown.lg.global" + this.lgId, function (t) {
                 if (e.lgOpened && ("Tab" === t.key || 9 === t.keyCode)) {
-                  var s = ot(e.$container.get()),
+                  var s = rt(e.$container.get()),
                     i = s[0],
                     n = s[s.length - 1];
                   t.shiftKey
@@ -8541,14 +8808,14 @@
               }),
                 this.settings.closeOnTap &&
                   (this.outer.on("mousedown.lg", function (s) {
-                    var i = Ze(s.target);
+                    var i = Ue(s.target);
                     t = !!e.isSlideElement(i);
                   }),
                   this.outer.on("mousemove.lg", function () {
                     t = !1;
                   }),
                   this.outer.on("mouseup.lg", function (s) {
-                    var i = Ze(s.target);
+                    var i = Ue(s.target);
                     e.isSlideElement(i) &&
                       t &&
                       (e.outer.hasClass("lg-dragging") || e.closeGallery());
@@ -8558,10 +8825,10 @@
           (e.prototype.closeGallery = function (e) {
             var t = this;
             if (!this.lgOpened || (!this.settings.closable && !e)) return 0;
-            this.LGel.trigger(Ve),
+            this.LGel.trigger(qe),
               this.settings.resetScrollPosition &&
                 !this.settings.hideScrollbar &&
-                Ze(window).scrollTop(this.prevScrollTop);
+                Ue(window).scrollTop(this.prevScrollTop);
             var s,
               i = this.items[this.index];
             if (this.zoomFromOrigin && i) {
@@ -8571,13 +8838,13 @@
                 l = this.galleryItems[this.index],
                 a = l.__slideVideoInfo,
                 c = l.poster,
-                d = Je(
+                d = Qe(
                   i,
                   this.outer,
                   o + r,
                   a && c && this.settings.videoMaxSize
                 );
-              s = Qe(i, this.outer, o, r, d);
+              s = et(i, this.outer, o, r, d);
             }
             this.zoomFromOrigin && s
               ? (this.outer.addClass("lg-closing lg-zoom-from-image"),
@@ -8596,7 +8863,7 @@
               (this.zoomFromOrigin = this.settings.zoomFromOrigin),
               clearTimeout(this.hideBarTimeout),
               (this.hideBarTimeout = !1),
-              Ze("html").removeClass("lg-on"),
+              Ue("html").removeClass("lg-on"),
               this.outer.removeClass("lg-visible lg-components-open"),
               this.$backdrop.removeClass("in").css("opacity", 0);
             var u =
@@ -8623,7 +8890,7 @@
                   t.outer.removeClass("lg-closing " + t.settings.startClass),
                   t.getSlideItem(t.index).removeClass("lg-start-end-progress"),
                   t.$inner.empty(),
-                  t.lgOpened && t.LGel.trigger(qe, { instance: t }),
+                  t.lgOpened && t.LGel.trigger(je, { instance: t }),
                   t.$container.get() && t.$container.get().blur(),
                   (t.lgOpened = !1);
               }, u + 100),
@@ -8667,7 +8934,7 @@
           (e.prototype.destroyGallery = function () {
             this.destroyModules(!0),
               this.settings.dynamic || this.invalidateItems(),
-              Ze(window).off(".lg.global" + this.lgId),
+              Ue(window).off(".lg.global" + this.lgId),
               this.LGel.off(".lg"),
               this.$container.remove();
           }),
@@ -8683,38 +8950,38 @@
           e
         );
       })();
-    const ut = function (e, t) {
-      return new dt(e, t);
+    const ht = function (e, t) {
+      return new ut(e, t);
     };
-    var ht = s(205),
-      gt = s(578),
-      pt = s(571),
-      mt = s(797);
-    const ft = document.querySelectorAll("[data-gallery]");
-    let vt, bt;
-    ft.length &&
-      ft.forEach((e) => {
-        ut(e, {
-          plugins: [gt, mt, pt, ht],
+    var gt = s(205),
+      pt = s(578),
+      mt = s(571),
+      ft = s(797);
+    const vt = document.querySelectorAll("[data-gallery]");
+    let bt, yt;
+    vt.length &&
+      vt.forEach((e) => {
+        ht(e, {
+          plugins: [pt, ft, mt, gt],
           licenseKey: "7EC452A9-0CFD441C-BD984C7C-17C8456E",
           speed: 500,
         });
       }),
       document.addEventListener("click", function (e) {
-        (vt = e.target),
+        (bt = e.target),
           (function () {
-            if (vt.closest(".spollers__title"))
+            if (bt.closest(".spollers__title"))
               if (
-                ((bt = vt.parentElement),
-                bt.classList.contains("spollers__item") &&
-                  !bt.classList.contains("show-line"))
+                ((yt = bt.parentElement),
+                yt.classList.contains("spollers__item") &&
+                  !yt.classList.contains("show-line"))
               ) {
                 document.querySelectorAll(".show-line").forEach((e) => {
                   e.classList.contains("show-line") &&
                     e.classList.remove("show-line");
                 }),
-                  bt.classList.add("show-line");
-              } else bt.classList.remove("show-line");
+                  yt.classList.add("show-line");
+              } else yt.classList.remove("show-line");
           })();
       }),
       (window.FLS = !1),
@@ -8882,7 +9149,7 @@
         }
       })(!0),
       (g.selectModule = new h({})),
-      new Ee({}),
+      new Ie({}),
       (function () {
         function e(e) {
           if ("click" === e.type) {
@@ -8911,7 +9178,7 @@
           document.addEventListener("watcherCallback", e);
       })(),
       (function () {
-        Ie = !0;
+        Le = !0;
         const e = document.querySelector("header.header"),
           t = e.hasAttribute("data-scroll-show"),
           s = e.dataset.scrollShow ? e.dataset.scrollShow : 500,
