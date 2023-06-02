@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230601183135">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230602113345">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@
 						</ul>
 					</div>
 
-					<button type="button" class="menu__icon icon-menu"><span></span></button>
+					<button type="button" class="menu__icon icon-menu" aria-label="open menu"><span></span></button>
 				</div>
 			</div>
 		</header>
@@ -68,7 +68,7 @@
 						<h3 class="hero__subtitle subtitle">Experience new social battle royale game</h3>
 						<button type="submit" class="hero__btn-bay-now yellow-button"><span>Buy Now on Steam</span> <span></span> <span>$14.99</span></button>
 					</div>
-					<button data-goto="#about" type="button" class="hero__btn-scroll"><span>The story</span></button>
+					<button data-goto="#about" type="button" class="hero__btn-scroll" aria-label="next"><span>The story</span></button>
 				</div>
 			</section>
 			<section id="about" data-watch="navigator" class="page__description-game game-description">
@@ -105,7 +105,7 @@
 								</a>
 							</div>
 							<div class="slider__pagination swiper-pagination"></div>
-							<button type="button" class="slider__btn-next">
+							<button type="button" class="slider__btn-next" aria-label="button next slide">
 								<svg width="23" height="11" viewBox="0 0 23 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M21.8047 1.78784H1.80469L11.6927 9.78784L21.8047 1.78784Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 								</svg>
@@ -256,7 +256,9 @@
 						<h2 class="subscribe__title title">newsletter SUBSCRIBE </h2>
 						<p>In order to start receiving our news, all you have to do is enter your email address. Everything else will be taken care of by us. We will send you emails containing information about game. We don’t spam.</p>
 						<form class="subscribe__form" action="/" method="get">
-							<input type="email" name="form[]" data-validate data-required="email" data-error="*Error" placeholder="Your email address" class="subscribe__input-email">
+							<label>
+								<input type="email" name="form[]" data-validate data-required="email" data-error="*Error" placeholder="Your email address" class="subscribe__input-email">
+							</label>
 							<button type="submit" class="subscribe__button yellow-button">Subscribe now</button>
 						</form>
 					</div>
@@ -316,7 +318,7 @@
 </div>
  -->
 
-	<script src="js/app.min.js?_v=20230601183135"></script>
+	<script src="js/app.min.js?_v=20230602113345"></script>
 </body>
 
 </html>
