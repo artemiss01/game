@@ -282,7 +282,10 @@ h6 {
 .row-menu__logo {
   position: relative;
   z-index: 55;
-  flex: 0 0 4.5833333333%;
+  flex: 0 1 4.5833333333%;
+}
+.row-menu__logo img {
+  max-width: 5.625rem;
 }
 .menu {
   flex-basis: 51.1666666667%;
@@ -2122,15 +2125,20 @@ h6 {
   position: relative;
   display: flex;
   column-gap: 0.75rem;
-  row-gap: 0.9375rem;
+  row-gap: 2.8125rem;
 }
 @media (max-width: 29.99875em) {
   .subscribe__form {
     flex-wrap: wrap;
   }
 }
-.subscribe__input-email {
+.subscribe__form label {
+  position: relative;
   flex: 1 1 auto;
+}
+.subscribe__input-email {
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   padding: 0.5rem 1.375rem;
   font-weight: 400;
@@ -2161,7 +2169,7 @@ h6 {
 
 .form__error {
   position: absolute;
-  bottom: -1.5625rem;
+  bottom: -1.875rem;
   left: 0;
   color: rgb(243, 40, 40);
 }
